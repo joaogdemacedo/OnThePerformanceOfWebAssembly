@@ -7,14 +7,22 @@ os inputs têm que ser dados dentro do ficheiro
 ### Compilação
 
 1. Compilar o .c
-	/usr/bin/gcc -pipe -Wall -O3 -fomit-frame-pointer -march=ivybridge  fasta.gcc-9.c -o fasta.gcc-9.gcc_run
+	-	Sem input:
+		/usr/bin/gcc -pipe -Wall -O3 -fomit-frame-pointer -march=ivybridge  fasta.gcc-9.c -o fasta.gcc-9.gcc_run
+	-	Com input:
+		/usr/bin/gcc -pipe -Wall -O3 -fomit-frame-pointer -march=ivybridge  fasta.gcc-9.c -o fasta.gcc-9.gcc_run -DLARGE_DATASET
 
 2. Compilar para JS
-	/opt/cheerp/bin/clang -target cheerp fasta.gcc-9.c -o fasta.js -O3
+	- Sem input:
+		/opt/cheerp/bin/clang -target cheerp fasta.gcc-9.c -o fasta.js -O3
+	-	Com input:
+		/opt/cheerp/bin/clang -target cheerp fasta.gcc-9.c -o fasta.js -O3 DLARGE_DATASET
 
 3. Compilar para WASM
-	/opt/cheerp/bin/clang -target cheerp-wasm fasta.gcc-9.c -o fasta_vw.js -O3
-		com input:
+	-	Sem input
+		/opt/cheerp/bin/clang -target cheerp-wasm fasta.gcc-9.c -o fasta_vw.js -O3
+	-	Com input:
+		/opt/cheerp/bin/clang -target cheerp-wasm fasta.gcc-9.c -o fasta_vw.js -O3 -DLARGE_DATASET
 		
 
 ### Run
@@ -31,6 +39,7 @@ os inputs têm que ser dados dentro do ficheiro
 4. para correr no browser é necessário um html
 
 	fasta_vw.htlm:
+	``` html/op
 	<!DOCTYPE html>
 	<html lang="en">
 	<head>
@@ -40,7 +49,7 @@ os inputs têm que ser dados dentro do ficheiro
 	<h1 id="pagetitle">Compiled!</h1>
 	</body>
 	</html>
-
+	```
 	python3 -m http.server --cgi
 	open -a "Google Chrome" http://localhost:8000/fasta_vw.html
 	open -a "Safari" http://localhost:8000/fasta_vw.html

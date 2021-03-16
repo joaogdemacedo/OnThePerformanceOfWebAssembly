@@ -77,7 +77,7 @@
 #endif
 
 #ifdef MEDIUM_DATASET
-#define TEST_REPEAT_TIME 1
+#define TEST_REPEAT_TIME 250000
 #endif
 
 //***************************
@@ -244,7 +244,7 @@ int main(int argc, char **argv) {
   int n=1000;
   //if (argc>1) n = atoi(argv[1]);
   n=TEST_REPEAT_TIME;
-  printf("%d\n", n);
+  printf("o input é: %d\n", n);
 
   write(1, header1, sizeof(header1)-1);
   repeat_fasta(alu, n*2);
