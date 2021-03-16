@@ -8,6 +8,9 @@
 #include <sys/types.h> 
 #include <pthread.h>
 #include <arpa/inet.h>
+#include <time.h> 
+
+
 
 #define MAX 256
 #define PORT "8080"
@@ -19,10 +22,27 @@ int main(int argc, char **argv)
     struct addrinfo* ainfo;
     struct addrinfo hints;
 
+    char timeOutput[MAX]; /* time output logfile name */
+    char timefinal[MAX];
+    char *found, *timefile;
+    
+    timefile = strdup(argv[2]); // argv[2] example "fasta/C/fastaresult1"
+    found = strsep(&timefile,"/");
+    found = strsep(&timefile,"/");
+    found = strsep(&timefile," ");  
+    strcpy(timeOutput, found);  
+    strcat(timeOutput, ".time");
+    //printf("timeoutput: %s\n", timeOutput); // timeOutput example "fastaresult1.time"
+
+
+    FILE * fp = fopen(timeOutput, "w+"); /* Open file */
+
+    fprintf(fp, "Time\n"); /* Write header line */
+
+
     // Create start message to send to server
     char * startmsg = malloc(5 + strlen(argv[1]) + strlen(argv[2]));
     sprintf(startmsg, "start %s %s", argv[1], argv[2]);
-
     printf("%s\n", startmsg);
 
     // Command to execute
@@ -64,8 +84,21 @@ int main(int argc, char **argv)
     // Send message to start measuring
     write(sockfd, startmsg, 256); 
 
+    // Calculate the time at the beginning
+    clock_t t; 
+    t = clock(); 
+
     // Run command
     system(command);
+
+    // Calculate the time at the end
+    t = clock() - t; 
+    double time_taken = ((double)t)/CLOCKS_PER_SEC; // in seconds 
+    sprintf(timefinal,"%f", time_taken);
+    fprintf(fp, timefinal); /* Write time line */
+    printf("func took %f seconds to execute \n", time_taken); 
+    printf("Func took %s seconds to execute \n", timefinal); 
+
 
     // Send message to stop measuring
     write(sockfd, "end", 3); 

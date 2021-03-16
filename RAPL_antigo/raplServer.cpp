@@ -15,6 +15,7 @@
 #include <arpa/inet.h>
 #include "rapl.h"
 
+
 using namespace std;
 using std::vector;
 #define BAUDRATE B115200
@@ -69,7 +70,8 @@ char ** getRecords (char * response) {
 /*
  * Gather configurations sent by client
  */
-void gatherConfigs(char * string){
+void gatherConfigs(char * string){ // exemplo: string = start 10000 fasta/C/fastaresult3
+	
 	char *found;
 	found = strsep(&string," ");
 	found = strsep(&string," ");
@@ -96,7 +98,6 @@ void * runRAPL(){
 
 	fprintf(fp, "Package,CPU,GPU,DRAM\n"); /* Write header line */
 
-	rapl_init(core);
 
 	while(run){
 	    rapl_before(fp, core);
@@ -290,7 +291,6 @@ void waitMessage(int sockfd)
 			pthread_join(raplThread, 0);
 			//pthread_join(arduinoThread, 0);
 			printf("SUCESSFULY STOPPED.\n");
-
 			break;
 		}
 	}
@@ -306,6 +306,8 @@ int main()
 	int sockfd, connfd;
 	socklen_t len;
 	struct sockaddr_in servaddr;
+	//char buff[STRMAX], message[STRMAX];
+
 
 	/* Signal for killing the server */ 
 	signal(SIGTERM, sighandler);
@@ -363,6 +365,14 @@ int main()
 		else {
 			printf("server acccept the client...\n");
 		}
+		/*
+		bzero(buff, STRMAX);
+		bzero(message, STRMAX);
+		
+		// Reads message into buffer
+		read(connfd, buff, sizeof(buff));
+        printf("#############  %s\n", buff);
+		*/
 
 		// Communication between server and client
 		waitMessage(connfd);
