@@ -16,3 +16,5 @@ sum:
 clean:
 	rm fasta.gcc-9.gcc_run
 	sudo rm fasta1.rapl fasta2.rapl fasta3.rapl
+	sudo rm fasta1.time fasta2.time fasta3.time
+	sudo rm fasta.sum

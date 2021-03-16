@@ -8,6 +8,7 @@
 #include <sys/types.h> 
 #include <pthread.h>
 #include <arpa/inet.h>
+#include <sys/time.h>
 
 #define MAX 256
 #define PORT "8080"
@@ -22,6 +23,14 @@ int main(int argc, char **argv)
     // Create start message to send to server
     char * startmsg = malloc(5 + strlen(argv[1]) + strlen(argv[2]));
     sprintf(startmsg, "start %s %s", argv[1], argv[2]);
+
+    // create time file
+    char * timefile = strdup(argv[2]);
+    strcat(timefile, ".time");
+    //printf(">>>> time file: %s\n", timefile);
+
+    FILE * fp = fopen(timefile, "w+"); /* Open file */
+    fprintf(fp, "Time\n"); /* Write header line */
 
     printf("%s\n", startmsg);
 
@@ -64,8 +73,23 @@ int main(int argc, char **argv)
     // Send message to start measuring
     write(sockfd, startmsg, 256); 
 
+    // get start time
+    struct timeval  tv1, tv2;
+	gettimeofday(&tv1, NULL);
+
     // Run command
     system(command);
+
+    // get end time
+    gettimeofday(&tv2, NULL);
+    double exectime = 
+         (double) (tv2.tv_usec - tv1.tv_usec) / 1000000 +
+         (double) (tv2.tv_sec - tv1.tv_sec);
+    char timefinal[MAX];
+
+    // write exectime in time file
+    sprintf(timefinal,"%f", exectime);
+	fprintf(fp,timefinal);
 
     // Send message to stop measuring
     write(sockfd, "end", 3); 

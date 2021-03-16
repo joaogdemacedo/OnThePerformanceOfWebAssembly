@@ -110,8 +110,8 @@ def printSoma(energySpent,text,urlrapl):
     txt = "" 
     print("Somas de ",urlrapl," :")
     for i in energySpent.keys():
-        if(i == "DRAM"):
-            print("Energy Spent on Rapl -",i,":",energySpent[i],"J")
+        if(i == "Time"):
+            print("Execution",i,":",energySpent[i],"S")
             txt = txt + str(energySpent[i]) +"\n"
 
         elif(i == "GPU"):
@@ -128,7 +128,7 @@ def printSoma(energySpent,text,urlrapl):
 ##tratar dos resultados
 text = sys.argv[1]
 finalfile = open(text+".sum", "w") 
-finalfile.write("Package;CPU;GPU;DRAM\n")
+finalfile.write("Package;CPU;GPU;DRAM;Time\n")
 finalfile.close()     
 #urlard= text+".ard"
 #urlrapl= text+".rapl"
@@ -141,7 +141,7 @@ finalfile.close()
 #    print("ficheiro nao existe")
 #se quiseres varios ficheiros
 for i in range(1,11):
-        urlard= str(i)+text+".ard"
+        urlard= text+str(i)+".time"
         urlrapl= text+str(i)+".rapl"
         #if(path.exists(urlard)):
         #    ardclean(urlard)   
