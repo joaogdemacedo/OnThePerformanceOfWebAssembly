@@ -68,7 +68,7 @@
 #endif
 
 #ifdef MEDIUM_DATASET
-#define TEST_REPEAT_TIME 2500000
+#define TEST_REPEAT_TIME 250000
 #endif
 //***************************
 
