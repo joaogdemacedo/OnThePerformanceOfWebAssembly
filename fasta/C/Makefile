@@ -1,20 +1,23 @@
 compile:
-	/usr/bin/gcc -pipe -Wall -O3 -fomit-frame-pointer -march=ivybridge  fasta.gcc-9.c -o fasta.gcc-9.gcc_run
+	/usr/bin/gcc -pipe -Wall -O3 -fomit-frame-pointer -march=ivybridge  fasta.c -o fasta
 
-raplserver:
+small:
+	/usr/bin/gcc -pipe -Wall -O3 -fomit-frame-pointer -march=ivybridge  fasta.c -o fastaSMALL -DSMALL_DATASET
+
+big:
+	/usr/bin/gcc -pipe -Wall -O3 -fomit-frame-pointer -march=ivybridge  fasta.c -o fastaBIG -DBIG_DATASET
+
+server:
+	sudo modprobe msr
 	sudo ../../RAPL/raplServer
 
-raplclient:
+client:
 	sudo modprobe msr
-	sudo ../../RAPL/raplClient 10000 fasta1 ./fasta.gcc-9.gcc_run
-	sudo ../../RAPL/raplClient 10000 fasta2 ./fasta.gcc-9.gcc_run
-	sudo ../../RAPL/raplClient 10000 fasta3 ./fasta.gcc-9.gcc_run
-
-sum:
-	sudo python3 ../../RAPL/cleanresults.py fasta
+	for number in 1 2 3 4 5 6 7 8 9 10 ; do \
+        sudo ../../RAPL/raplClient 10000 fasta$$number ./fasta ; \
+    done
 
 clean:
-	rm fasta.gcc-9.gcc_run
-	sudo rm fasta1.rapl fasta2.rapl fasta3.rapl
-	sudo rm fasta1.time fasta2.time fasta3.time
-	sudo rm fasta.sum
+	rm fasta
+	sudo rm *.rapl
+	sudo rm *.time

@@ -1,27 +1,27 @@
 # OnThePerformanceOfWebAssembly
 
-##Instruções:
+## Instruções:
 usando o exemplo fasta.gcc-9.c
 os inputs têm que ser dados dentro do ficheiro
 
 ### Compilação
 
 1. Compilar o .c
-	-	Sem input:
+	- Sem input:
 		/usr/bin/gcc -pipe -Wall -O3 -fomit-frame-pointer -march=ivybridge  fasta.gcc-9.c -o fasta.gcc-9.gcc_run
-	-	Com input:
+	- Com input:
 		/usr/bin/gcc -pipe -Wall -O3 -fomit-frame-pointer -march=ivybridge  fasta.gcc-9.c -o fasta.gcc-9.gcc_run -DLARGE_DATASET
 
 2. Compilar para JS
 	- Sem input:
 		/opt/cheerp/bin/clang -target cheerp fasta.gcc-9.c -o fasta.js -O3
-	-	Com input:
+	- Com input:
 		/opt/cheerp/bin/clang -target cheerp fasta.gcc-9.c -o fasta.js -O3 DLARGE_DATASET
 
 3. Compilar para WASM
-	-	Sem input
+	- Sem input
 		/opt/cheerp/bin/clang -target cheerp-wasm fasta.gcc-9.c -o fasta_vw.js -O3
-	-	Com input:
+	- Com input:
 		/opt/cheerp/bin/clang -target cheerp-wasm fasta.gcc-9.c -o fasta_vw.js -O3 -DLARGE_DATASET
 		
 

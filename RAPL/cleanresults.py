@@ -6,7 +6,11 @@ import os
 #import matplotlib.pyplot as plt
 import os.path
 from os import path
-
+# importing the statistics module
+from statistics import median
+  
+# Importing fractions module as fr
+from fractions import Fraction as fr
 
 def raplclean(url2):
     frapl = open(url2,"r")
@@ -19,38 +23,8 @@ def raplclean(url2):
     frapl.close()
     return frapl
 
-def ardclean(url1):
-    fard = open(url1, "r")
-    disco = fard.read()
-    disco = re.sub(r"\n\n","\n",disco)
-    disco = re.sub("Joules","Disco",disco)
-    disco = re.sub(r"Arduino Ready\n","",disco)
-    disco = re.sub(r"\n$","",disco)
-    disco = re.sub(r'([-](?=\.\d|\d)(?:\d+)?(?:\.?\d*))(?:[eE]([+-]?\d+))?', "0.0", disco)
-    fard.close()
-    fard = open(url1, "w")
-    fard.write(disco)
-    fard.close()
-    return fard
 
-#media do sleep
-def printmediasleep(energySpent,results,text):
-    txt = "" 
-    energyPerUs = {}
-    for i in energySpent.keys():
-        if(i == "Disco"):
-            txt = txt + str(energySpent[i]/len(results[i])) + "\n"
-            energyPerUs[i] = energySpent[i]/len(results[i])
-        else:
-            txt = txt + str(energySpent[i]/len(results[i])) + ";"
-            energyPerUs[i] = energySpent[i]/len(results[i])
-    finalfile = open(text+".final", "w") 
-    finalfile.write(txt)
-    finalfile.close()
-    return energyPerUs
-
-
-def crp(url1,url2,txt): #Processar dados e organizar
+def crp(url1,url2,txt,m1,nexecution): #Processar dados e organizar
     energySpent = {}
     results = {}
     frapl = open(url2, "r")
@@ -73,79 +47,90 @@ def crp(url1,url2,txt): #Processar dados e organizar
             energySpent[i] += float(aux[j])
             j = j+1
     frapl.close()
-    #Adicionar os valores do ard aos resultados
-    if(path.exists(urlard)):
-        fard = open(url1, "r")
-        text = fard.read()
+    #Adicionar os valores do time aos resultados
+    if(path.exists(urltime)):
+        ftime = open(url1, "r")
+        text = ftime.read()
         text = re.split(r'\n',text)
         results[text[0]] = []
         energySpent[text[0]] = 0.0
         for line in text[1:]:
             results[text[0]].append(float(line))
             energySpent[text[0]]+=float(line)
-        fard.close()
-    printSoma(energySpent,txt,urlrapl)
-
-        
-
-## Resultados - Energia Gasta - energia do sistema operativo
-def printResults(results,energySpent,energyPerUs,txt):
-    txt = "" 
-    for i in energySpent.keys():
-        if(i == "Disco"):
-            print("Energy Spent on Disk:",energySpent[i],"J")
-            txt = txt + str(energySpent[i]-(energyPerUs[i]*len(results[i]))) +"\n"
-
-        elif(i == "GPU"):
-            txt = txt + "0" + ";"
-        else:
-
-            txt = txt + str(energySpent[i]-(energyPerUs[i]*len(results[i]))) + ";"
-    finalfile = open(text+".sum", "a+") 
-    finalfile.write(txt)
-    finalfile.close()            
+        ftime.close()
+    printSoma(energySpent,txt,urlrapl,m1,nexecution)
+          
 
 ## Resultados - Energia Gasta 
-def printSoma(energySpent,text,urlrapl):
-    txt = "" 
+def printSoma(energySpent,text,urlrapl,m1,nexecution):
+    txt = str(nexecution)+";"
     print("Somas de ",urlrapl," :")
     for i in energySpent.keys():
         if(i == "Time"):
+            m1[i].append(energySpent[i])
             print("Execution",i,":",energySpent[i],"S")
             txt = txt + str(energySpent[i]) +"\n"
 
         elif(i == "GPU"):
+            m1[i].append(energySpent[i])
             txt = txt + "0" + ";"
         else:
+            m1[i].append(energySpent[i])
             print("Energy Spent on Rapl -",i,":",energySpent[i],"J")            
             txt = txt + str(energySpent[i]) + ";"
     finalfile = open(text+".sum", "a+") 
     finalfile.write(txt)
     finalfile.close()            
 
+def printmediana(text,m1):
+    txt="Median;"
+    for i in m1.keys():
+        if(i == "Time"): # para dar \n
+            t1 = tuple(m1[i])
+            x = median(t1)
+            print("Median of Time Spent -",i,":",x,"S")            
+            txt = txt + str(x) + "\n"
+        else:
+            t1 = tuple(m1[i])
+            x = median(t1)
+            print("Median of Energy Spent on Rapl -",i,":",x,"J")            
+            txt = txt + str(x) + ";"
+            
+    finalfile = open(text+".sum", "a+") 
+    finalfile.write(txt)
+    finalfile.close()         
+
 
 
 ##tratar dos resultados
+
 text = sys.argv[1]
 finalfile = open(text+".sum", "w") 
-finalfile.write("Package;CPU;GPU;DRAM;Time\n")
-finalfile.close()     
-#urlard= text+".ard"
-#urlrapl= text+".rapl"
-#if(path.exists(urlard)):
-#    ardclean(urlard)
-#if(path.exists(urlrapl)):
-#    raplclean(urlrapl)
-#    crp(urlard,urlrapl,text)
-#else:
-#    print("ficheiro nao existe")
-#se quiseres varios ficheiros
-for i in range(1,11):
-        urlard= text+str(i)+".time"
-        urlrapl= text+str(i)+".rapl"
-        #if(path.exists(urlard)):
-        #    ardclean(urlard)   
-        if(path.exists(urlrapl)):
-            raplclean(urlrapl)
-            crp(urlard,urlrapl,text)
- 
+finalfile.write("")
+finalfile.close()
+
+cwd = os.getcwd()
+for filename in os.listdir(cwd):
+    f = os.path.join(cwd, filename)
+    if os.path.isdir(f):
+        print("merdas")
+        linguagem = f.rsplit('/', 1)
+        linguagem = linguagem[1]
+        for i in range(1,11):
+                urltime = f+"/"+text+str(i)+".time"
+                urlrapl = f+"/"+text+str(i)+".rapl"
+                if(path.exists(urlrapl)):
+                    if(i==1):
+                        m1 = {}
+                        m1["Package"] = []
+                        m1["CPU"] = []
+                        m1["GPU"] = []
+                        m1["DRAM"] = []
+                        m1["Time"] = []
+                        finalfile = open(text+".sum", "a+") 
+                        finalfile.write(linguagem+";Package;CPU;GPU;DRAM;Time\n")
+                        finalfile.close()
+                    raplclean(urlrapl)
+                    crp(urltime,urlrapl,text,m1,i)
+        printmediana(text,m1)
+

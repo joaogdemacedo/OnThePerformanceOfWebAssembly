@@ -51,35 +51,25 @@
 
 //***************************
 // Customized content
-#ifdef LARGE_DATASET
-#define TEST_REPEAT_TIME 2
+
+#ifdef SMALL_DATASET
+#define TEST_REPEAT_TIME 25
 #endif
-#ifdef EXTRALARGE_DATASET
-#define TEST_REPEAT_TIME 4
-#endif
-#ifdef XXL_DATASET
-#define TEST_REPEAT_TIME 8
-#endif
-#ifdef XXXL_DATASET
-#define TEST_REPEAT_TIME 16
+#ifdef BIG_DATASET
+#define TEST_REPEAT_TIME 25000000
 #endif
 
-#ifndef XXXL_DATASET
-  #ifndef XXL_DATASET
-    #ifndef EXTRALARGE_DATASET
-      #ifndef LARGE_DATASET
-        #ifndef MEDIUM_DATASET
-          #define MEDIUM_DATASET
-        #endif
-      #endif
+#ifndef SMALL_DATASET
+  #ifndef BIG_DATASET
+    #ifndef MEDIUM_DATASET
+      #define MEDIUM_DATASET
     #endif
   #endif
 #endif
 
 #ifdef MEDIUM_DATASET
-#define TEST_REPEAT_TIME 250000
+#define TEST_REPEAT_TIME 2500000
 #endif
-
 //***************************
 
 #define IM 139968
