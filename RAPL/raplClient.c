@@ -21,8 +21,10 @@ int main(int argc, char **argv)
     struct addrinfo hints;
 
     // Create start message to send to server
-    char * startmsg = malloc(5 + strlen(argv[1]) + strlen(argv[2]));
+    char * startmsg = malloc(8 + strlen(argv[1]) + strlen(argv[2]));
     sprintf(startmsg, "start %s %s", argv[1], argv[2]);
+    printf(argv[2]);
+    printf("\n");
 
     // create time file
     char * timefile = strdup(argv[2]);
