@@ -29,7 +29,6 @@ compileall:
 	/usr/bin/gcc -pipe -Wall -O3 -fomit-frame-pointer -march=ivybridge  fasta.gcc-2.c -o Small_dataset/C/fasta.gcc-2.gcc_runSMALL -DSMALL_DATASET
 	/usr/bin/gcc -pipe -Wall -O3 -fomit-frame-pointer -march=ivybridge  fasta.gcc-2.c -o Medium_dataset/C/fasta.gcc-2.gcc_runMEDIUM -DMEDIUM_DATASET
 	/usr/bin/gcc -pipe -Wall -O3 -fomit-frame-pointer -march=ivybridge  fasta.gcc-2.c -o Big_dataset/C/fasta.gcc-2.gcc_runBIG -DBIG_DATASET
-	source ../../emsdk/emsdk_env.sh
 	emcc fasta.gcc-2.c -DSMALL_DATASET -o Small_dataset/WASM/fasta.gcc-2.gcc_runWASM_SMALL.js -O2 -s WASM=1
 	emcc fasta.gcc-2.c -DSMALL_DATASET -o Small_dataset/JS/fasta.gcc-2.gcc_runJS_SMALL.js -O2 -s WASM=0
 	emcc fasta.gcc-2.c -DMEDIUM_DATASET -o Medium_dataset/WASM/fasta.gcc-2.gcc_runWASM_MEDIUM.js -O2 -s WASM=1

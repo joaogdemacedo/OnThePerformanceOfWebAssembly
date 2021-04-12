@@ -29,7 +29,6 @@ compileall:
 	/usr/bin/gcc -pipe -Wall -O3 -fomit-frame-pointer -march=ivybridge  example.c -o Small_dataset/C/example_runSMALL -DSMALL_DATASET
 	/usr/bin/gcc -pipe -Wall -O3 -fomit-frame-pointer -march=ivybridge  example.c -o Medium_dataset/C/example_runMEDIUM -DMEDIUM_DATASET
 	/usr/bin/gcc -pipe -Wall -O3 -fomit-frame-pointer -march=ivybridge  example.c -o Big_dataset/C/example_runBIG -DBIG_DATASET
-	source ../../emsdk/emsdk_env.sh
 	emcc example.c -DSMALL_DATASET -o Small_dataset/WASM/example_runWASM_SMALL.js -O2 -s WASM=1
 	emcc example.c -DSMALL_DATASET -o Small_dataset/JS/example_runJS_SMALL.js -O2 -s WASM=0
 	emcc example.c -DMEDIUM_DATASET -o Medium_dataset/WASM/example_runWASM_MEDIUM.js -O2 -s WASM=1

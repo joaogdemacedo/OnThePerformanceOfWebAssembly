@@ -1,5 +1,5 @@
 # OnThePerformanceOfWebAssembly
-
+ Desatualizado !
 ## Instruções:
 usando o exemplo fasta.gcc-9.c
 os inputs têm que ser dados dentro do ficheiro
