@@ -3,5 +3,6 @@
         "chrono": "cpp",
         "immintrin.h": "c",
         "unistd.h": "c"
-    }
+    },
+    "C_Cpp.dimInactiveRegions": true
 }

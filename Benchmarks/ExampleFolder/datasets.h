@@ -1,4 +1,3 @@
-
 #ifdef SMALL_DATASET
 #define TEST_REPEAT_TIME 11
 #endif
