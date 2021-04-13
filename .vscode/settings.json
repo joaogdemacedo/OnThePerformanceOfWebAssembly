@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "chrono": "cpp",
-        "immintrin.h": "c"
+        "immintrin.h": "c",
+        "unistd.h": "c"
     }
 }
