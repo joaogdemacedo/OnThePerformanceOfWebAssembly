@@ -59,6 +59,9 @@ os inputs têm que ser dados dentro do ficheiro
 conseguir correr vários inputs
 organizar por pastas: benchmark -> linguagem
 
+## anotações
+flag emscripten "-s ALLOW_MEMORY_GROWTH=1"
+
 
 
 
