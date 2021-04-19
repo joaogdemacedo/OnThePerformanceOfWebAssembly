@@ -2,7 +2,8 @@
     "files.associations": {
         "chrono": "cpp",
         "immintrin.h": "c",
-        "unistd.h": "c"
+        "unistd.h": "c",
+        "stdio.h": "c"
     },
     "C_Cpp.dimInactiveRegions": true
 }
