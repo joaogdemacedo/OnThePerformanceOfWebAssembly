@@ -4,7 +4,7 @@ raplserver:
 
 raplclient:
 	sudo modprobe msr
-	for number in 1 2 3 4 5 ; do \
+	for number in 1 2 3 4 5 6 7 8 9 10 ; do \
         sudo ../../../../../RAPL/raplClient 1000 sortingquickSMALL$$number "node ../sortingquick_runWASM_SMALL.js" ; \
     done
 
