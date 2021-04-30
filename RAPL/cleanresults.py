@@ -129,7 +129,7 @@ for filename in os.listdir(cwd):
     if os.path.isdir(f):
         linguagem = f.rsplit('/', 1)
         linguagem = linguagem[1]
-        for i in range(1,11):
+        for i in range(1,21):
                 urltime = f+"/Results/"+text+str(i)+".time"
                 urlrapl = f+"/Results/"+text+str(i)+".rapl"
                 if(path.exists(urlrapl)):
