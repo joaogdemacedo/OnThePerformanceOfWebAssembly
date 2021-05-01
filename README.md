@@ -36,20 +36,8 @@ os inputs têm que ser dados dentro do ficheiro
 3. Correr o WASM
 	node fasta_vw.js
 
-4. para correr no browser é necessário um html
+4. para correr no browser é necessário um html criado pelo emscripten
 
-	fasta_vw.htlm:
-	``` html/op
-	<!DOCTYPE html>
-	<html lang="en">
-	<head>
-    	<script defer src="fasta_vw.js"></script>
-	</head>
-	<body>
-	<h1 id="pagetitle">Compiled!</h1>
-	</body>
-	</html>
-	```
 	python3 -m http.server --cgi
 
 	google-chrome http://localhost:8000/fasta_vw.html
