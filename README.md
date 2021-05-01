@@ -51,8 +51,11 @@ os inputs têm que ser dados dentro do ficheiro
 	</html>
 	```
 	python3 -m http.server --cgi
-	open -a "Google Chrome" http://localhost:8000/fasta_vw.html
+
+	google-chrome http://localhost:8000/fasta_vw.html
+
 	open -a "Safari" http://localhost:8000/fasta_vw.html
+	
 	open -a "Firefox" http://localhost:8000/fasta_vw.html
 
 ## To Do
