@@ -27,7 +27,7 @@ typedef intptr_t intnative_t;
 
 
 int main(int argc, char ** argv){
-   const intnative_t n=TEST_REPEAT_TIME;
+   const intnative_t n=INPUT;
 
    // Create and initialize factorial_Lookup_Table.
    intnative_t factorial_Lookup_Table[n+1];

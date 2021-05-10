@@ -37,7 +37,7 @@ void bead_sort(int *a, int len)
  
 int main()
 {
-	int i, x[] = TEST_REPEAT_TIME;
+	int i, x[] = INPUT;
 	int len = sizeof(x)/sizeof(x[0]);
  
 	bead_sort(x, len);

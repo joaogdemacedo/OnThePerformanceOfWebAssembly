@@ -29,7 +29,7 @@ void circle_sort(int *x, int n)
  
 int main(void)
 {
-	int x[] = TEST_REPEAT_TIME;
+	int x[] = INPUT;
 	circle_sort(x, sizeof(x) / sizeof(*x));
  
 	return 0;

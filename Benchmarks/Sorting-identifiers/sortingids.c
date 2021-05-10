@@ -81,7 +81,7 @@ int oid_compare(const void* p1, const void* p2) {
 }
  
 int main() {
-    const char* input[] = TEST_REPEAT_TIME;
+    const char* input[] = INPUT;
     const int len = sizeof(input)/sizeof(input[0]);
     oid* oids[len];
     memset(oids, 0, sizeof(oids));

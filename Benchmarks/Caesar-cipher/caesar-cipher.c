@@ -26,7 +26,7 @@ void rot(int c, char *str)
 
 int main()
 {
-	char str[] = TEST_REPEAT_TIME;
+	char str[] = INPUT;
 
 	caesar(str);
 	printf("%s\n", str);

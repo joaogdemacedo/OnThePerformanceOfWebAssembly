@@ -217,7 +217,7 @@ void natural_sort(wchar_t **strings, int len, int flags)
 	free(kws);
 }
  
-const wchar_t *const test[] = TEST_REPEAT_TIME;
+const wchar_t *const test[] = INPUT;
 #define N_STRINGS sizeof(test)/sizeof(*test)
  
 void test_sort(int flags)

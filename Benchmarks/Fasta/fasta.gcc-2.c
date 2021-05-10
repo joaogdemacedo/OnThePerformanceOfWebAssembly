@@ -206,13 +206,13 @@ static void random_fasta(const char *symb,
 }
 
 const char header1[] = ">ONE Homo sapiens alu\n";
-const char header2[] = ">TWO IUB ambiguity codes\n";
+const char header2[] = ">TWO IUB amlargeuity codes\n";
 const char header3[] = ">THREE Homo sapiens frequency\n";
 
 int main(int argc, char **argv) {
   int n=1000;
   //if (argc>1) n = atoi(argv[1]);
-  n=TEST_REPEAT_TIME;
+  n=INPUT;
   
 
   write(1, header1, sizeof(header1)-1);

@@ -30,7 +30,7 @@ void mergesort (int *a, int n) {
 }
 
 int main (void) {
-  int a[] = TEST_REPEAT_TIME;
+  int a[] = INPUT;
   int n = sizeof a / sizeof a[0];  //    saraiva: known ... 5
   int i;
 

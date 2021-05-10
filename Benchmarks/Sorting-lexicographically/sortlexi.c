@@ -34,7 +34,7 @@ void lexOrder(int n, int *ints) {
  
 int main() {
     int i, j, k, n,  *ints;
-    int numbers[] = TEST_REPEAT_TIME;
+    int numbers[] = INPUT;
     printf("In lexicographical order:\n\n");
     for (i = 0; i < 5; ++i) {
         k = n = numbers[i];

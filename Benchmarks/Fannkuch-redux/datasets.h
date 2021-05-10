@@ -1,12 +1,12 @@
 #ifdef SMALL_DATASET
-#define TEST_REPEAT_TIME 11
+#define INPUT 10
 #endif
-#ifdef BIG_DATASET
-#define TEST_REPEAT_TIME 13
+#ifdef LARGE_DATASET
+#define INPUT 14
 #endif
 
 #ifndef SMALL_DATASET
-  #ifndef BIG_DATASET
+  #ifndef LARGE_DATASET
     #ifndef MEDIUM_DATASET
       #define MEDIUM_DATASET
     #endif
@@ -14,5 +14,5 @@
 #endif
 
 #ifdef MEDIUM_DATASET
-#define TEST_REPEAT_TIME 12
+#define INPUT 12
 #endif
