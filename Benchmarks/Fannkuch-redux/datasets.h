@@ -2,7 +2,7 @@
 #define INPUT 10
 #endif
 #ifdef LARGE_DATASET
-#define INPUT 14
+#define INPUT 13
 #endif
 
 #ifndef SMALL_DATASET
