@@ -144,5 +144,7 @@ If you would like to properly test every benchmark of every language, please mak
 
 ### Browsers Versions
 Google Chrome:  92.0.4515.107 (Official Build) (64-bit)
+
 Mozilla Firefox: 90.0 (64-bit)
+
 Microsoft Edge: 92.0.902.55 (Official build) beta (64-bit)
