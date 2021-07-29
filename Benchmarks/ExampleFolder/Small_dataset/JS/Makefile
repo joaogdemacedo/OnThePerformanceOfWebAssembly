@@ -17,4 +17,4 @@ mozillafirefox:
 	firefox -private http://localhost:8000/example_runJS_SMALL.html
 
 microsoftedge:
-	microsoft-edge -inprivate  http://localhost:8000/example_runJS_LARGE.html
+	microsoft-edge -inprivate  http://localhost:8000/example_runJS_SMALL.html
