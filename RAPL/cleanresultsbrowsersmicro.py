@@ -121,7 +121,7 @@ def printmedia(text,m1,browser,language):
 text = sys.argv[1] # tobutobugirl
 csvname = sys.argv[1]+"browsers" # fastabrowsers
 finalfile = open(csvname+".csv", "w") 
-finalfile.write(text + "\nBrowser,Language,N,Package,CPU,GPU,DRAM,Time\n")
+finalfile.write("Browser,Language,N,Package,CPU,GPU,DRAM,Time\n")
 finalfile.close()
 
 cwds= [os.getcwd(),os.getcwd()]
