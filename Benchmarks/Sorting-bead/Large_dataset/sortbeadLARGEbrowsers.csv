@@ -1,4 +1,4 @@
-Browser,Language,Package,CPU,GPU,DRAM,Time
+Browser,Language,Package,CPU,DRAM,Time
 GoogleChrome,JS,646.395,558.990,61.128,24.943
 MicrosoftEdge,JS,848.812,758.222,71.417,47.500
 MozillaFirefox,JS,547.809,458.888,62.213,27.516
