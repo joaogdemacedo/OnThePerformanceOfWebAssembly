@@ -78,18 +78,20 @@ def printSoma(energySpent,text,urlrapl,m1,nexecution,browser,language):
             m1[i].append(energySpent[i])
             #print("Energy Spent on Rapl -",i,":",energySpent[i],"J")            
             txt = txt + str("{:.3f}".format(energySpent[i])) + ","
-    finalfile = open(text+".csv", "a+") 
-    finalfile.write(txt)
-    finalfile.close()            
+    #finalfile = open(text+".csv", "a+") 
+    #finalfile.write(txt)
+    #finalfile.close()            
 
 def printmediana(text,m1,browser,language):
-    txt=browser+","+language+","+"Median,"
+    txt=browser+","+language+","
     for i in m1.keys():
         if(i == "Time"): # para dar \n
             t1 = tuple(m1[i])
             x = median(t1)
             #print("Median of Time Spent -",i,":",x,"S")            
             txt = txt + str("{:.3f}".format(x)) + "\n"
+        elif(i == "GPU"):
+            txt=txt
         else:
             t1 = tuple(m1[i])
             x = median(t1)
@@ -121,7 +123,7 @@ def printmedia(text,m1,browser,language):
 text = sys.argv[1] # tobutobugirl
 csvname = sys.argv[1]+"browsers" # fastabrowsers
 finalfile = open(csvname+".csv", "w") 
-finalfile.write("Browser,Language,N,Package,CPU,GPU,DRAM,Time\n")
+finalfile.write("Browser,Language,Package,CPU,GPU,DRAM,Time\n")
 finalfile.close()
 
 cwds= [os.getcwd(),os.getcwd()]
@@ -151,5 +153,5 @@ for cwd in cwds:
                         raplclean(urlrapl)
                         crp(urltime,urlrapl,csvname,m1,i,browser,language)
             printmediana(csvname,m1,browser,language)
-            printmedia(csvname,m1,browser,language)
+            #printmedia(csvname,m1,browser,language)
 
