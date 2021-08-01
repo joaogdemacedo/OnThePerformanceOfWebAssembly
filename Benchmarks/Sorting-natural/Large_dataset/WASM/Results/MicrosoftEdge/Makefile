@@ -4,4 +4,4 @@ raplserver:
 
 raplclient:
 	sudo modprobe msr
-	sudo ../../../../../../RAPL/raplClient2 10000 exampleLARGE$(ARGS) "sleep 20";
+	sudo ../../../../../../RAPL/raplClient2 10000 sortingnaturalLARGE$(ARGS) "sleep 180";
