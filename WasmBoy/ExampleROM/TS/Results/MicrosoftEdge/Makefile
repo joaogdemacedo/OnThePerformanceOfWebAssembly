@@ -5,6 +5,6 @@ raplserver:
 raplclient:
 	sudo modprobe msr
 	xdg-settings set default-web-browser microsoft-edge-beta.desktop
-	for number in 1 2 3; do \
+	for number in 1 2 3 4 5; do \
 		sleep 3;sudo ../../../../../RAPL/raplClient 10000 examplerom$$number "sudo -u diguest xdg-open ../../index.html";\
     done
