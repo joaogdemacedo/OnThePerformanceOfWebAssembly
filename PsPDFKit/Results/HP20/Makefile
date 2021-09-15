@@ -1,2 +1,2 @@
 sum:
-	sudo python3 ../../RAPL/cleanresultswasmboy.py hp20
+	sudo python3 ../../../RAPL/cleanresultspdf.py hp20

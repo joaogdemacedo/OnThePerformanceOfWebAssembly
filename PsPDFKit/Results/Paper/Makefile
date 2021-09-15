@@ -1,2 +1,2 @@
 sum:
-	sudo python3 ../../RAPL/cleanresultswasmboy.py paper
+	sudo python3 ../../../RAPL/cleanresultspdf.py paper
