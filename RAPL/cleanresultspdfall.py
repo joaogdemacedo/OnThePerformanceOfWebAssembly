@@ -140,7 +140,6 @@ for cwd in cwds:
                     urlrapl = f+"/"+text+str(i)+".rapl"
                     if(path.exists(urlrapl)):
                         if(i==1):
-                            print("teste")
                             m1 = {}
                             m1["Package"] = []
                             m1["CPU"] = []

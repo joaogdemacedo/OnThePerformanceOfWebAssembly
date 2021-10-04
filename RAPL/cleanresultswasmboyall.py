@@ -78,9 +78,9 @@ def printSoma(energySpent,text,urlrapl,m1,nexecution,browser,language):
             m1[i].append(energySpent[i])
             #print("Energy Spent on Rapl -",i,":",energySpent[i],"J")            
             txt = txt + str("{:.3f}".format(energySpent[i])) + ","
-    #finalfile = open(text+".csv", "a+") 
-    #finalfile.write(txt)
-    #finalfile.close()            
+    finalfile = open(text+"all.csv", "a+") 
+    finalfile.write(txt)
+    finalfile.close()            
 
 def printmediana(text,m1,browser,language):
     txt=browser+","+language+","
@@ -97,7 +97,7 @@ def printmediana(text,m1,browser,language):
             x = median(t1)
             #print("Median of Energy Spent on Rapl -",i,":",x,"J")            
             txt = txt + str("{:.3f}".format(x)) + ","
-    finalfile = open(text+".csv", "a+") 
+    finalfile = open(text+"all.csv", "a+") 
     finalfile.write(txt)
     finalfile.close()         
 
@@ -114,15 +114,15 @@ def printmedia(text,m1,browser,language):
             x = mean(t1)
             #print("Median of Energy Spent on Rapl -",i,":",x,"J")            
             txt = txt + str("{:.3f}".format(x)) + ","
-    finalfile = open(text+".csv", "a+") 
+    finalfile = open(text+"all.csv", "a+") 
     finalfile.write(txt)
     finalfile.close() 
 
 ##tratar dos resultados
 
 text = sys.argv[1] # tobutobugirl
-finalfile = open(text+".csv", "w") 
-finalfile.write("Browser,Language,Package,CPU,DRAM,Time\n")
+finalfile = open(text+"all.csv", "w") 
+finalfile.write("Browser,Language,N,Package,CPU,GPU,DRAM,Time\n")
 finalfile.close()
 
 cwds= [os.getcwd(),os.getcwd()]
@@ -135,7 +135,7 @@ for cwd in cwds:
             caminho = f.rsplit('/', 3)
             browser = caminho[3]
             language = caminho[1]
-            for i in range(1,4):
+            for i in range(1,6):
                     urltime = f+"/"+text+str(i)+".time"
                     urlrapl = f+"/"+text+str(i)+".rapl"
                     if(path.exists(urlrapl)):
@@ -146,11 +146,11 @@ for cwd in cwds:
                             m1["GPU"] = []
                             m1["DRAM"] = []
                             m1["Time"] = []
-                            finalfile = open(text+".csv", "a+") 
+                            finalfile = open(text+"all.csv", "a+") 
                             #finalfile.write("Browser,Language,N,Package,CPU,GPU,DRAM,Time\n")
                             finalfile.close()
                         raplclean(urlrapl)
                         crp(urltime,urlrapl,text,m1,i,browser,language)
-            printmediana(text,m1,browser,language)
+            #printmediana(text,m1,browser,language)
             #printmedia(text,m1,browser,language)
 
